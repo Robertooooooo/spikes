@@ -1,7 +1,7 @@
 
 
 
-function [spikeXcoord,templateXcoord ,spikeAmps, spikeYcoor, templateYcoor, tempAmps, tempsUnW, templateDuration,...
+function [spikeXcoor,templateXcoor ,spikeAmps, spikeYcoor, templateYcoor, tempAmps, tempsUnW, templateDuration,...
     waveforms] = MytemplatePositionsAmplitudes(temps, winv, xcoords, ycoords, spikeTemplates, tempScalingAmps )
 % function [spikeAmps, spikeDepths, templateDepths, tempAmps, tempsUnW, templateDuration, waveforms] = templatePositionsAmplitudes(temps, winv, ycoords, spikeTemplates, tempScalingAmps)
 %
@@ -50,7 +50,7 @@ tempChanAmps(bsxfun(@lt, tempChanAmps, threshVals)) = 0;
 % ... in order to compute the depth as a center of mass
 templateYcoor = sum(bsxfun(@times,tempChanAmps,ycoords'),2)./sum(tempChanAmps,2);
 
-templateXcoord = sum(bsxfun(@times,tempChanAmps,xcoords'),2)./sum(tempChanAmps,2);
+templateXcoor = sum(bsxfun(@times,tempChanAmps,xcoords'),2)./sum(tempChanAmps,2);
 
 % assign all spikes the amplitude of their template multiplied by their
 % scaling amplitudes (templates are zero-indexed)
@@ -65,7 +65,7 @@ tempAmps = tempAmps'; % for consistency, make first dimension template number
 
 % Each spike's depth is the depth of its template
 spikeYcoor = templateYcoor(spikeTemplates+1);
-spikeXcoord = templateXcoord(spikeTemplates+1);
+spikeXcoor = templateXcoor(spikeTemplates+1);
             
 % Get channel with largest amplitude, take that as the waveform
 [~,max_site] = max(max(abs(temps),[],2),[],3);
